@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
-import React from "react";
-import Item from "./item";
+import Item from './item';
 
-export default function ItemList() {
-    
+export default function ItemList({ items }) {
   const [sortBy, setSortBy] = useState('name');
 
-
-  const sortItem = () => {
+  
+  const sortItems = (items, sortBy) => {
     return [...items].sort((a, b) => {
       if (sortBy === 'name') {
-        return a.name.localCompare(b.name);
+        return a.name.localeCompare(b.name);
       } else if (sortBy === 'category') {
-        return a.category.localCompare(b.category);
+        return a.category.localeCompare(b.category);
       }
     });
   };
 
-  const sortedItems = sortItem();
+  const sortedItems = sortItems(items, sortBy);
 
- 
   const handleSortByChange = (newSortBy) => {
     setSortBy(newSortBy);
   };
@@ -51,5 +48,4 @@ export default function ItemList() {
       </div>
     </>
   );
-
 }
